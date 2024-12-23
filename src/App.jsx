@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Snowfall from "react-snowfall";
 import GameCanvas from "./components/GameCanvas";
 import "./style/app.scss";

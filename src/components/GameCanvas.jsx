@@ -33,8 +33,6 @@ const GameCanvas = observer(() => {
         const bgWidth = canvas.width - 300;
         const bgHeight = canvas.height;
 
-        const logoWidth = 100;
-
         // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -197,8 +195,8 @@ const GameCanvas = observer(() => {
     };
 
     const handleTouchStart = (event) => {
-        event.preventDefault(); 
-        handleMouseDown(); 
+        event.preventDefault();
+        handleMouseDown();
     };
 
     useEffect(() => {
@@ -225,6 +223,7 @@ const GameCanvas = observer(() => {
                     onTouchEnd={handleMouseUp}
                 />
             </div>
+            <button className="mute" onClick={() => gameStore.toggleMute()}>{gameStore.isMuted ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Volume-Control-Off--Streamline-Streamline-3.0.svg" height="24" width="24"><desc>Volume Control Off Streamline Icon: https://streamlinehq.com</desc><g><path d="m11 16.88 3.06 1.95a1.5 1.5 0 0 0 2.4 -1.2V13" fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path><path d="M9.3 14.63H4.5a1.5 1.5 0 0 1 -1.5 -1.5v-3a1.5 1.5 0 0 1 1.5 -1.5h3l6.6 -4.21a1.5 1.5 0 0 1 2.4 1.21v3" fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path><path d="m3 19.87 18 -15" fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path></g></svg> : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Volume-Control-Full--Streamline-Streamline-3.0.svg" height="24" width="24"><path d="M14.171 4.658A1.5 1.5 0 0 0 12.6 4.8L6 9H3a1.5 1.5 0 0 0 -1.5 1.5v3A1.5 1.5 0 0 0 3 15h3l6.6 4.2A1.5 1.5 0 0 0 15 18V6a1.5 1.5 0 0 0 -0.829 -1.342Z" fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path><path d="M21.463 15.75a6.6 6.6 0 0 0 0 -7.1" fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path><path d="M18.562 14.441a3.493 3.493 0 0 0 0 -4.405" fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path><path d="m6 9 0 6" fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></path></svg>}</button>
             {gameStore.isGameOver && (
                 <div className="modal">
                     <div className="modal__content">
@@ -233,7 +232,7 @@ const GameCanvas = observer(() => {
                         </div>
                         <div className="modal__title">
                             <ReactTyped
-                                strings={["Game Over","Share Your Score", "Try Again", "Merry Christmas", "HO! HO! HO!"]}
+                                strings={["Game Over", "Share Your Score", "Try Again", "Merry Christmas", "HO! HO! HO!"]}
                                 typeSpeed={50}
                                 backSpeed={150}
                                 backDelay={100}

@@ -210,6 +210,15 @@ button {
     }
 }
 
+.mute {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    padding: 12px;
+    background-color: transparent;
+    color: white;
+}
+
 @keyframes slideInFromLeft {
     0% {
         opacity: 0;
