@@ -208,6 +208,28 @@ button {
             }
         }
     }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        max-width: 60%;
+
+        font-size: .8rem;
+
+        div {
+            text-align: center;
+            white-space: normal;
+        }
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
 }
 
 .mute {
@@ -216,11 +238,6 @@ button {
     right: 12px;
     padding: 12px;
     background-color: transparent;
-    color: white;
-}
-
-a {
-    display: block;
     color: white;
 }
 

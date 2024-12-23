@@ -21,7 +21,11 @@ const App = observer(() => {
 
         return () => window.removeEventListener("resize", checkWidth);
     }, []);
-    console.log(navigator.userAgent, "navigator")
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText("https://xmas.mono.software")
+    }
+
     return (
         <>
             <Header />
@@ -38,9 +42,9 @@ const App = observer(() => {
                         </svg>
                         <h2>Please Rotate Your Device</h2>
                         <p>This game is best played in landscape mode.</p>
-                        <p>
-                            <span>If application doesn't let you rotate screen.</span>
-                            <a href="https://monosanta.netlify.app" target="_blank">Please click this link</a>
+                        <p className="modal__info">
+                            <div>If application doesn't let you rotate screen please visit link in another browser.</div>
+                            <div className="modal__link"><span>https://xmas.mono.software</span><svg xmlns="http://www.w3.org/2000/svg" onClick={handleCopy} width={20} height={20} fill="none" viewBox="0 0 24 24"><path fill="white" fillRule="evenodd" d="M6.399 8.18a2 2 0 0 1 1.96 -1.596h12.73a2 2 0 0 1 2 2v12.73a2 2 0 0 1 -2 2H8.359a2 2 0 0 1 -2 -2V8.584c0 -0.139 0.013 -0.273 0.04 -0.404Zm3.405 6.769c0 0.414 0.335 0.75 0.75 0.75h3.42v3.421a0.75 0.75 0 0 0 1.5 0v-3.421h3.421a0.75 0.75 0 0 0 0 -1.5h-3.421v-3.421a0.75 0.75 0 1 0 -1.5 0v3.42h-3.42a0.75 0.75 0 0 0 -0.75 0.75ZM4.858 8.584v8.832H2.911a2 2 0 0 1 -2 -2V2.686a2 2 0 0 1 2 -2h12.73a2 2 0 0 1 2 2v2.397H8.359a3.5 3.5 0 0 0 -3.5 3.5Z" clipRule="evenodd" strokeWidth="1"></path></svg></div>
                         </p>
 
                     </div>
