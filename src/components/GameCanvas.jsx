@@ -14,24 +14,21 @@ const GameCanvas = observer(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
 
-        // Assuming the SVG image is stored in `chimney.svg` and you've loaded it as an Image object
         const chimneyImg = new Image();
         const roofImg = new Image();
         const bgImg = new Image();
 
-        // Load the SVG images
-        chimneyImg.src = "/chimney.svg"; // Path to your chimney.svg
-        roofImg.src = "/roof.svg"; // Path to your roof.svg
-        bgImg.src = "/bg.svg"; // Path to your background.svg
+        chimneyImg.src = "/chimney.svg";
+        roofImg.src = "/roof.svg"; 
+        bgImg.src = "/bg.svg"; 
 
-        // SVG dimensions (you can adjust these values)
-        const roofWidth = 380; // Set desired roof width
-        const roofHeight = 150; // Set desired roof height
+        const roofWidth = 380;
+        const roofHeight = 150;
 
-        const chimneyWidth = 70; // Set desired width
-        const chimneyHeight = 70; // Set desired height
+        const chimneyWidth = 70;
+        const chimneyHeight = 70;
 
-        const bgWidth = canvas.width - 300; // Full canvas width minus the 200px offset
+        const bgWidth = canvas.width - 300;
         const bgHeight = canvas.height;
 
         // Clear canvas
@@ -42,7 +39,7 @@ const GameCanvas = observer(() => {
         // Draw background
         ctx.drawImage(bgImg, 150, 70, bgWidth, bgHeight);
 
-        // Draw current and target platform roofs
+        // Draw current and target roofs
         ctx.drawImage(
             roofImg,
             gameStore.playerPosition + offsetX - 50 - 50,
@@ -74,7 +71,7 @@ const GameCanvas = observer(() => {
             chimneyHeight
         );
 
-        // Draw future platform roof
+        // Draw future roof
         ctx.drawImage(
             roofImg,
             gameStore.futurePlatform.position + offsetX - 50,
@@ -83,7 +80,7 @@ const GameCanvas = observer(() => {
             roofHeight
         );
 
-        // Draw the chimney above the future platform roof
+        // Draw chimney
         ctx.drawImage(
             chimneyImg,
             gameStore.futurePlatform.position + offsetX,
@@ -180,8 +177,8 @@ const GameCanvas = observer(() => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
-        canvas.width = 1024; // Fixed width
-        canvas.height = 576; // Fixed height
+        canvas.width = 1024;
+        canvas.height = 576;
 
         drawGame();
 

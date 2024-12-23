@@ -56,7 +56,7 @@ class PlayerStore {
           this.updatePlayerImage(false); // Reset to idle image
           resolve(); // Resolve when movement is complete
         }
-      }, 8);
+      }, 16);
     });
   }
 }
