@@ -27,6 +27,7 @@ canvas {
     overflow: hidden;
     border-radius: 16px;
     box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.15);
+    background-color: #1b2c37;
 }
 
 button {
@@ -74,11 +75,32 @@ button {
     flex-direction: column;
     gap: 32px;
 
+    color: white;
+    text-align: center;
+
     &__title {
         font-size: 4.5rem;
         letter-spacing: 1px;
-        text-align: center;
-        color: white;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        max-width: 40rem;
+        gap: 16px;
+        padding: 16px;
+        text-align: left;
+    }
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 8px;
+
+        font-size: 0.7rem;
+        color: rgb(201, 201, 201);
     }
 }
 .header {
@@ -97,6 +119,90 @@ button {
 
 .typed-cursor {
     font-weight: 100;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1b2c37;
+
+    &__header {
+        width: 100%;
+
+        svg {
+            width: 100px;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        padding: 16px;
+        min-width: 30rem;
+        min-height: 50%;
+        background-color: white;
+        border-radius: 16px;
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1b2c37;
+        font-size: 3rem;
+        font-weight: bold;
+        flex-grow: 1;
+    }
+
+    &__buttons {
+        display: flex;
+        gap: 24px;
+    }
+
+    &__anchor {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        text-decoration: none;
+        color: #1b2c37;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    &__social {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        gap: 8px;
+        padding: 8px;
+
+        border-top: 1px solid #1b2c3741;
+        border-bottom: 1px solid #1b2c3741;
+    }
+
+    &__buttons {
+
+        button {
+            background-color: #1b2c37;
+            color: white;
+
+            &:first-child {
+                background-color: transparent;
+                color: #1b2c37;
+                border: 1px solid #1b2c37;
+            }
+        }
+    }
 }
 
 @keyframes slideInFromLeft {
@@ -138,16 +244,15 @@ button {
     .header {
         display: none;
     }
-    
+
     .loader {
-        
         &__title {
             font-size: 2rem;
         }
     }
 
     .game {
-        transform: scale(.6);
+        transform: scale(0.6);
         width: 100%;
     }
 }

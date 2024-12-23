@@ -1,7 +1,10 @@
 import React, { useEffect, useRef } from "react";
+import { ReactTyped } from "react-typed";
 import { observer } from "mobx-react-lite";
+import html2canvas from "html2canvas";
 import gameStore from "../store/gameStore";
 import playerStore from "../store/playerStore";
+import Logo from "./Logo";
 
 const GameCanvas = observer(() => {
     const canvasRef = useRef(null);
@@ -10,10 +13,12 @@ const GameCanvas = observer(() => {
     const chimneyImg = new Image();
     const roofImg = new Image();
     const bgImg = new Image();
+    const logoImg = new Image();
 
     chimneyImg.src = "/chimney.svg";
-    roofImg.src = "/roof.svg"; 
-    bgImg.src = "/bg.svg"; 
+    roofImg.src = "/roof.svg";
+    bgImg.src = "/bg.svg";
+    logoImg.src = "logo-hat.svg";
 
     const drawGame = () => {
         const canvas = canvasRef.current;
@@ -28,11 +33,14 @@ const GameCanvas = observer(() => {
         const bgWidth = canvas.width - 300;
         const bgHeight = canvas.height;
 
+        const logoWidth = 100;
+
         // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         const offsetX = 200 - playerStore.playerX;
 
+        ctx.fillStyle = "#1b2c37"; // Set the background color (same as body background)
         // Draw background
         ctx.drawImage(bgImg, 150, 70, bgWidth, bgHeight);
 
@@ -137,12 +145,14 @@ const GameCanvas = observer(() => {
         // Display score
         ctx.fillStyle = "white";
         ctx.font = `20px Roboto`;
-        ctx.fillText(`Score: ${gameStore.score}`, 10, 30);
+        ctx.textAlign = "center";
+        ctx.fillText(`Score: ${gameStore.score}`, canvas.width / 2, 30);
 
         if (gameStore.isGameOver) {
             ctx.fillStyle = "white";
             ctx.font = `40px Roboto`;
-            ctx.fillText("Game Over!", 400, 200);
+            ctx.textAlign = "center";
+            ctx.fillText("Game Over!", canvas.width / 2, 200);
             cancelAnimationFrame(animationId);
             return;
         }
@@ -171,6 +181,21 @@ const GameCanvas = observer(() => {
         gameStore.startStickFall();
     };
 
+    const downloadScreenshot = () => {
+        const canvas = canvasRef.current;
+
+        html2canvas(canvas, {
+            backgroundColor: "#1b2c37"
+        }).then((canvasScreenshot) => {
+            const screenshot = canvasScreenshot.toDataURL("image/png");
+
+            const link = document.createElement("a");
+            link.href = screenshot;
+            link.download = "mono_screenshot.png";
+            link.click();
+        });
+    };
+
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
@@ -196,7 +221,47 @@ const GameCanvas = observer(() => {
                 />
             </div>
             {gameStore.isGameOver && (
-                <button onClick={handleRestart}>Restart Game</button>
+                <div className="modal">
+                    <div className="modal__content">
+                        <div className="modal__header">
+                            <Logo noName={false} />
+                        </div>
+                        <div className="modal__title">
+                            <ReactTyped
+                                strings={["Game Over", "Try Again", "Merry Christmas", "HO! HO! HO!"]}
+                                typeSpeed={50}
+                                backSpeed={150}
+                                backDelay={100}
+                                startDelay={100}
+                                showCursor={true}
+                                cursorChar="|"
+                            />
+                        </div>
+                        <div className="modal__social">
+                            <a href="https://www.facebook.com/mono.software" className="modal__anchor"><svg viewBox="0 0 187 187" width={20} height={20} xmlns="http://www.w3.org/2000/svg" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd"><rect height="187" rx="18" ry="18" width="187" fill="#485992" /><path d="M131 79V67c0-6 4-7 6-7h18V33h-24c-27 0-33 20-33 32v14H83v31h16v77h30v-77h23l1-12 2-19h-24z" fill="#fefefe" /></svg> @mono.software</a>
+                            <a href="https://www.facebook.com/mono.software" className="modal__anchor"><svg version="1.1" viewBox="0 0 512 512" width={20} height={20} xmlns="http://www.w3.org/2000/svg">
+                                <radialGradient cx="225.474" cy="222.805" gradientTransform="matrix(14.2175 0 0 14.2171 -3055.704 -2615.996)" gradientUnits="userSpaceOnUse" id="grad" r="47.721">
+                                    <stop offset=".097" stopColor="#ffd87a" />
+                                    <stop offset=".143" stopColor="#fcce78" />
+                                    <stop offset=".226" stopColor="#f5b471" />
+                                    <stop offset=".338" stopColor="#eb8d65" />
+                                    <stop offset=".449" stopColor="#e36058" />
+                                    <stop offset=".679" stopColor="#cd3694" />
+                                    <stop offset="1" stopColor="#6668b0" />
+                                </radialGradient>
+                                <path d="M512 395.1c0 64.6-52.3 116.9-116.9 116.9H116.9C52.3 512 0 459.7 0 395.1V117C0 52.4 52.4 0 117 0h276.3C458.9 0 512 53.1 512 118.7v276.4z" fill="url(#grad)" />
+                                <path d="M327.2 70.6H184.8c-63.1 0-114.3 51.2-114.3 114.3v142.3c0 63.1 51.1 114.2 114.3 114.2h142.3c63.1 0 114.2-51.1 114.2-114.2V184.9c.1-63.2-51-114.3-114.1-114.3zm78.6 242.9c0 51-41.3 92.3-92.3 92.3h-115c-51 0-92.3-41.3-92.3-92.3v-115c0-51 41.3-92.3 92.3-92.3h115c51 0 92.3 41.4 92.3 92.3v115z" fill="#ffffff" />
+                                <path d="M261 159c-54 0-97.7 43.7-97.7 97.7 0 53.9 43.7 97.7 97.7 97.7 53.9 0 97.7-43.7 97.7-97.7-.1-54-43.8-97.7-97.7-97.7zm0 156.4c-32.5 0-58.8-26.3-58.8-58.8s26.3-58.8 58.8-58.8c32.4 0 58.8 26.3 58.8 58.8-.1 32.5-26.4 58.8-58.8 58.8zM376.7 157.5c0 13.7-11.1 24.8-24.8 24.8-13.7 0-24.8-11.1-24.8-24.8 0-13.7 11.1-24.9 24.8-24.9 13.7 0 24.8 11.1 24.8 24.9z" fill="#ffffff" />
+                            </svg> @mono.software</a>
+                            <a href="https://www.facebook.com/mono.software" className="modal__anchor"><svg viewBox="0 0 50 50" width={20} height={20} xmlns="http://www.w3.org/2000/svg"><path d="M45 1H5C2.8 1 1 2.8 1 5v40c0 2.2 1.8 4 4 4h40c2.2 0 4-1.8 4-4V5c0-2.2-1.8-4-4-4z" fill="#2CA7E0" /><path d="M40 16.2c-1.1.5-2.8 1.1-4 1.3 1.3-.8 2.5-2.6 3-4-1 .6-2.1 1.4-3.2 1.8l-.8-.8c-1.1-1.2-2.2-2-4-2-3.4 0-6 2.6-6 6 0 .4 0 .7.1 1H25c-6 0-10-1.3-13-5-.5.9-1 1.9-1 3 0 2.1 1.3 3.9 3 5-1 0-2.2-.5-3-1 0 3 4.2 6.4 7 7-1 1-4.6.1-5 0 .8 2.4 3.3 3.9 6 4-2.1 1.6-4.6 2.5-7.5 2.5-.5 0-1 0-1.5-.1 2.7 1.7 6.5 2.6 10 2.6 11.3 0 17-8.9 17-17v-1c1.2-.9 2.2-2.1 3-3.3z" fill="#FFF" /></svg> @mono.software</a>
+
+                        </div>
+                        <div className="modal__buttons">
+                            <button onClick={handleRestart}>Restart Game</button>
+                            <button onClick={downloadScreenshot}>Share your score</button>
+                        </div>
+                    </div>
+                </div>
             )}
         </React.Fragment>
     );
