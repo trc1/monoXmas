@@ -7,20 +7,17 @@ const GameCanvas = observer(() => {
     const canvasRef = useRef(null);
     let animationId = null;
 
-    console.log(gameStore.targetDistance, "target");
-    console.log(gameStore.stickLength, "stick");
+    const chimneyImg = new Image();
+    const roofImg = new Image();
+    const bgImg = new Image();
+
+    chimneyImg.src = "/chimney.svg";
+    roofImg.src = "/roof.svg"; 
+    bgImg.src = "/bg.svg"; 
 
     const drawGame = () => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
-
-        const chimneyImg = new Image();
-        const roofImg = new Image();
-        const bgImg = new Image();
-
-        chimneyImg.src = "/chimney.svg";
-        roofImg.src = "/roof.svg"; 
-        bgImg.src = "/bg.svg"; 
 
         const roofWidth = 380;
         const roofHeight = 150;

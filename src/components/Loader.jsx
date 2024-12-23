@@ -1,5 +1,3 @@
-import React from "react";
-import Logo from "./Logo";
 import { ReactTyped } from "react-typed";
 import gameStore from "../store/gameStore";
 
@@ -9,10 +7,10 @@ export default function Loader() {
             <h1 className="loader__title">
                 <ReactTyped
                     strings={["Merry Christmas", "and Happy New Year"]}
-                    typeSpeed={200}
+                    typeSpeed={300}
                     backSpeed={50}
-                    backDelay={1000}
-                    startDelay={1000}
+                    backDelay={200}
+                    startDelay={200}
                     showCursor={true}
                     cursorChar="|"
                 />

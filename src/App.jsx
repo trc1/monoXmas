@@ -6,7 +6,7 @@ import gameStore from "./store/gameStore";
 import { observer } from "mobx-react-lite";
 import Header from "./components/Header";
 
-function App() {
+const App = observer(() => {
     return (
         <>
             <Header />
@@ -17,6 +17,6 @@ function App() {
             <Snowfall snowflakeCount={300} style={{ opacity: 0.5 }} />
         </>
     );
-}
+})
 
-export default observer(App);
+export default App;
