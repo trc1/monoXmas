@@ -194,6 +194,8 @@ const GameCanvas = observer(() => {
                     ref={canvasRef}
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
+                    onTouchStart={handleMouseDown}
+                    onTouchEnd={handleMouseUp}
                 />
             </div>
             {gameStore.isGameOver && (
