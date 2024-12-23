@@ -38,7 +38,7 @@ const App = observer(() => {
                         </svg>
                         <h2>Please Rotate Your Device</h2>
                         <p>This game is best played in landscape mode.</p>
-                        {navigator.userAgent.includes("Chrome") &&
+                        {navigator.userAgent.includes("Instagram") &&
                             <p>
                                 <span>If application doesn't let you rotate screen.</span>
                                 <a href="https://monosanta.netlify.app" target="_blank">Please click this link</a>
