@@ -19,10 +19,9 @@ body {
     font-family: "Roboto", Helvetica, sans-serif;
 }
 
-/* canvas {
-    max-width: 1024px;
-    background-color: #1B2C37;
-} */
+canvas {
+    user-select: none;
+}
 
 .game {
     overflow: hidden;
