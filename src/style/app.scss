@@ -136,6 +136,13 @@ button {
     .header {
         display: none;
     }
+    
+    .loader {
+        
+        &__title {
+            font-size: 2rem;
+        }
+    }
 
     .game {
         transform: scale(.6);

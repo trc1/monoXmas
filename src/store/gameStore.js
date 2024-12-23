@@ -40,7 +40,7 @@ class GameStore {
   // Increment stick length while the player is holding the mouse down
   growStick() {
     if (!this.isStickPlaced) {
-      this.stickLength += 5 * this.speedMultiplier; // Adjust speed based on multiplier
+      this.stickLength +=2 * this.speedMultiplier; // Adjust speed based on multiplier
     }
   }
 

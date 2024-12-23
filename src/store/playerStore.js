@@ -33,7 +33,7 @@ class PlayerStore {
     return new Promise((resolve) => {
       const fallInterval = setInterval(() => {
         if (this.playerY < 700) { // Simulate falling
-          this.playerY += 8; // Player fall speed
+          this.playerY += 5; // Player fall speed
         } else {
           clearInterval(fallInterval);
           resolve(); // Resolve once the fall is complete
@@ -45,7 +45,7 @@ class PlayerStore {
   // Move player horizontally
   movePlayer(targetX) {
     return new Promise((resolve) => {
-      this.playerVelocity = 8; // Set movement speed
+      this.playerVelocity = 3; // Set movement speed
       const moveInterval = setInterval(() => {
         if (this.playerX < targetX) {
           this.playerX += this.playerVelocity; // Update position
@@ -56,7 +56,7 @@ class PlayerStore {
           this.updatePlayerImage(false); // Reset to idle image
           resolve(); // Resolve when movement is complete
         }
-      }, 16);
+      }, 8);
     });
   }
 }
