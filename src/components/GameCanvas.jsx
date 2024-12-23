@@ -196,6 +196,11 @@ const GameCanvas = observer(() => {
         });
     };
 
+    const handleTouchStart = (event) => {
+        event.preventDefault(); 
+        handleMouseDown(); 
+    };
+
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
@@ -216,7 +221,7 @@ const GameCanvas = observer(() => {
                     ref={canvasRef}
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
-                    onTouchStart={handleMouseDown}
+                    onTouchStart={handleTouchStart}
                     onTouchEnd={handleMouseUp}
                 />
             </div>

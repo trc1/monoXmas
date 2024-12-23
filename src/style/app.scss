@@ -21,6 +21,7 @@ body {
 
 canvas {
     user-select: none;
+    touch-action: none;
 }
 
 .game {
@@ -132,7 +133,7 @@ button {
     align-items: center;
     justify-content: center;
     background-color: #1b2c37;
-
+    
     &__header {
         width: 100%;
 
@@ -152,6 +153,11 @@ button {
         min-height: 50%;
         background-color: white;
         border-radius: 16px;
+
+        &--transparent {
+            color: white;
+            background-color: transparent;
+        }
     }
 
     &__title {
@@ -245,14 +251,50 @@ button {
         display: none;
     }
 
+    .content {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+    }
+
     .loader {
+        width: 100vw;
+        height: 100vh;
+        padding: 16px;
+        gap: 0;
+
         &__title {
             font-size: 2rem;
+        }
+
+        &__subtitle {
+            text-align: center;
+        }
+
+        &__content {
+            padding: 8px;
+            gap: 8px;
+            max-width: 100%;
+            font-size: .7rem;
+        }
+
+        button {
+            margin-top: 8px;
         }
     }
 
     .game {
         transform: scale(0.6);
+        transform-origin: top;
         width: 100%;
+    }
+
+    .modal {
+
+        &__content {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+        }
     }
 }
