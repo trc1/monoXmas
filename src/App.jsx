@@ -21,7 +21,7 @@ const App = observer(() => {
 
         return () => window.removeEventListener("resize", checkWidth);
     }, []);
-
+    console.log(navigator.userAgent, "navigator")
     return (
         <>
             <Header />
@@ -38,6 +38,12 @@ const App = observer(() => {
                         </svg>
                         <h2>Please Rotate Your Device</h2>
                         <p>This game is best played in landscape mode.</p>
+                        {navigator.userAgent.includes("Chrome") &&
+                            <p>
+                                <span>If application doesn't let you rotate screen.</span>
+                                <a href="https://monosanta.netlify.app" target="_blank">Please click this link</a>
+                            </p>
+                        }
                     </div>
                 </div>
             )}
