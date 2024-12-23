@@ -19,6 +19,7 @@ class GameStore {
   timeElapsed = 0;     // Timer to track time elapsed in seconds
   timerInterval = null;
   showGame = false;
+  gameSound = null;
 
   // Future platform properties
   futurePlatform = {
@@ -35,6 +36,14 @@ class GameStore {
 
   startGame() {
     this.showGame = true;
+
+        // Play sound when the game starts
+        if (!this.gameSound) {
+          this.gameSound = new Audio('/christmas-song.mp3'); 
+          this.gameSound.volume = 0.2;  
+          this.gameSound.loop = true;   
+          this.gameSound.play();
+        }
   }
 
   // Increment stick length while the player is holding the mouse down

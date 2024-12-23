@@ -25,7 +25,7 @@ const GameCanvas = observer(() => {
         const ctx = canvas.getContext("2d");
 
         const roofWidth = 380;
-        const roofHeight = 150;
+        const roofHeight = 120;
 
         const chimneyWidth = 70;
         const chimneyHeight = 70;
@@ -144,15 +144,15 @@ const GameCanvas = observer(() => {
 
         // Display score
         ctx.fillStyle = "white";
-        ctx.font = `20px Roboto`;
+        ctx.font = `40px Roboto`;
         ctx.textAlign = "center";
-        ctx.fillText(`Score: ${gameStore.score}`, canvas.width / 2, 30);
+        ctx.fillText(`Score: ${gameStore.score}`, canvas.width / 2, 70);
 
         if (gameStore.isGameOver) {
             ctx.fillStyle = "white";
-            ctx.font = `40px Roboto`;
+            ctx.font = `80px Roboto`;
             ctx.textAlign = "center";
-            ctx.fillText("Game Over!", canvas.width / 2, 200);
+            ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
             cancelAnimationFrame(animationId);
             return;
         }
@@ -233,7 +233,7 @@ const GameCanvas = observer(() => {
                         </div>
                         <div className="modal__title">
                             <ReactTyped
-                                strings={["Game Over", "Try Again", "Merry Christmas", "HO! HO! HO!"]}
+                                strings={["Game Over","Share Your Score", "Try Again", "Merry Christmas", "HO! HO! HO!"]}
                                 typeSpeed={50}
                                 backSpeed={150}
                                 backDelay={100}
