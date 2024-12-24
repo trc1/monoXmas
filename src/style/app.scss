@@ -222,6 +222,7 @@ button {
         div {
             text-align: center;
             white-space: normal;
+            padding-bottom: 16px;
         }
     }
 
@@ -229,6 +230,27 @@ button {
         display: flex;
         align-items: center;
         gap: 4px;
+        padding: 8px 20px;
+    }
+
+    &__svg {
+        transition: opacity .3s ease-in-out;
+
+        &--copy {
+            opacity: 1;
+
+            &.active {
+                opacity: 0;
+            }
+        }
+
+        &--check {
+            opacity: 0;
+
+            &.active {
+                opacity: 1;
+            }
+        }
     }
 }
 
